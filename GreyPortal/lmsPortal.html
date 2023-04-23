@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-aFq/bzH65dt+w6FI2ooMVUpc+21e0SRygnTpmBvdBgSdnuTN7QbdgL+OapgHtvPp" crossorigin="anonymous">
+<style>
+    #body{
+        background-color: brown ;
+    }
+    #sign{
+        background-color: brown;
+        padding-left: 20px;
+        width: 70%;
+        margin-left: 85px;
+        color: white;
+        font-weight: bold;
+        height: 50px;
+        font-size: 20px;
+    }
+    #user, #user1, #user2, #user3{
+        width: 70%;
+        margin-left: 85px;
+        height: 60px;
+    }
+    #text{
+        color: brown;
+    }
+    #ready{
+        font-size: 20px;
+        color: gray;
+        margin-left: 160px;
+        margin-bottom: 50px;
+        padding-bottom: 50px;
+    }
+    #dex{
+        color: brown;
+        font-size: 20px;
+        text-decoration: none;
+    }
+    ::placeholder{
+        color: brown !important;
+        font-weight: bold;
+    }
+    #marquee{
+        font-size: 40px;
+        font-weight: bold;
+        color: white;
+    }
+</style>
+<body id="body">
+    <marquee id="marquee" behavior="" direction="left">LMS STUDENTS REGISTRATION PORTAL</marquee>
+    <div class="col-lg-5 col-md-8 col-sm-12 mx-auto shadow mt-4 bg-light rounded">
+        <h1 id="text" class="text-center">CREATE AN ACCOUNT</h1>
+        <input type="text" class="form-control mt-3" placeholder="first Name" id="input">
+        <input type="text" class="form-control mt-3" placeholder="last Name" id="input1">
+        <input type="text" class="form-control mt-3" placeholder="email" id="input2">
+        <input type="password" class="form-control mt-3" placeholder="password" id="input3">
+       <button id="sign" onclick="registerStudent1()" class="btn my-3">CREATE</button>
+        <h4 id="ready">Already registered? <a id="dex" href="dex.html">Sign In</a></h4>
+    </div>
+    <script>
+        var allStudents1 = []
+            function registerStudent1(){
+            if(input.value, input1.value, input2.value, input3.value == ""){
+                alert("Enter your details")
+            } else{
+                var student1 = {
+                    firstName: input.value,
+                    lastName: input1.value,
+                    email: input2.value,
+                    password: input3.value
+                }
+                input.value = ""
+                input1.value = ""
+                input2.value = ""
+                input3.value = ""
+                allStudents.push(student1)
+                localStorage.setItem("score1", JSON.stringify(allStudents1))
+                window.location.href = "dex.html"
+                console.log(allStudents1);
+            }
+        }
+    </script>
+</body>
+</html>

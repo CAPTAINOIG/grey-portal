@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title> 
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+</head>
+<style>
+    table, tr,td {
+        margin-left: 250px;
+        border: 1px solid blue;
+        border-collapse: collapse;
+         /* width: 55vw;  */
+         margin-top: 50px;
+         padding: 20px;
+         height: 10px;
+         color: blue;
+         width: fit-content;
+        
+    }  
+    #tt{
+        font-weight: bold;
+    }
+    #dash{
+        margin-left: 400px;
+        margin-top: 50px;
+        font-size: 50px;
+        font-weight: bold;
+        color: blue;
+    }
+    ::placeholder{
+        font-weight: bold;
+    }
+</style>
+<body id="theme" onload="displaydash()">
+    <marquee id="dash" behavior="" direction="">WELCOME TO UNIVERSITY OF GREYLAND DASHBOARD</marquee>
+    <table class="stripe table-striped" id="myTable">
+
+    </table>
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5" id="exampleModalLabel" data-bs-dismiss="modal" >Update Changes</h1>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <input type="text" placeholder="FIRST NAME" id="firstName1" class="w-100 text-dark rounded mt-2">
+              <input type="text" placeholder="LAST NAME" id="lastName1" class="w-100 text-dark rounded mt-3">
+              <input type="text" placeholder="EMAIL" id="email1" class="w-100 text-daek rounded mt-3">
+              <input type="text" placeholder="PASSWORD" id="password1" class="w-100 text-dark rounded mt-3">
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+              <button onclick="editItem() "type="button" class="btn btn-primary" data-bs-dismiss="modal">UPDATE</button>
+            </div>
+          </div>
+        </div>
+      </div>
+</body>
+<script>
+    var allStudents = JSON.parse(localStorage.getItem ("score"))
+    var inputStorage = localStorage.getItem("userIndex")
+    alert("Welcome, " + " " + allStudents[inputStorage].email + " " + " " + allStudents[inputStorage].password)
+    // alert(`welcome, ${allStudents[inputStorage].firstName} ${allStudents[inputStorage].lastName}`)
+    function displaydash(){
+        myTable.innerHTML = `
+        <tr id=tt>
+            <td>S/N</td>
+            <td>FIRST NAME</td>
+            <td>LAST NAME</td>
+            <td>EMAIl</td>
+            <td>PASSWORD</td>
+            <td>ACTIONS</td>
+            </tr>
+            `
+        for (let index = 0; index < allStudents.length; index++) {
+            console.log(allStudents[index]);
+        myTable.innerHTML += `
+        <tr>
+            <td>${index +1}</td>
+            <td>${allStudents [index].firstName}</td>
+            <td>${allStudents [index].lastName}</td>
+            <td>${allStudents [index].email}</td>
+            <td>${allStudents [index].password}</td>
+            
+            <td>
+                <button class="btn btn-danger" onclick="deleteItem(${index})">delete Item</button>
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" onclick="editItem(${index})">edit Item</button></td>
+            </tr>
+            
+        `        
+        }
+    } 
+     function deleteItem (index){
+        var response = confirm("are you sure")
+            if(response == true){
+                allStudents.splice(index, 1)
+                console.log(allStudents);
+                displaydash()      
+            } else("Enter details")
+    } function editItem(index){
+        // var user =prompt("first Name")
+        // var user1 =prompt("last Name")
+        // var user2 =prompt("email")
+        // var user3 =prompt("password")
+        var input = firstName1.value
+        var input1 = lastName1.value
+        var input2 = email1.value
+        var input3 = password1.value
+        var newDetails = {
+            // firstName: user,
+            // lastName:user1,
+            // email: user2,
+            // password: user3
+            firstName: input,
+            lastName:input1,
+            email: input2,
+            password: input3
+        }
+        allStudents.splice(index, 1, newDetails)
+        console.log(allStudents);
+        displaydash()
+    }
+</script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
+</html>
